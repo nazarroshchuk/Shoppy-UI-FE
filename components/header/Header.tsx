@@ -17,12 +17,14 @@ import {AuthContext} from "@/context/auth-context";
 import {routes, unauthenticatedRoutes} from "@/constants/routes";
 import Link from "next/link";
 import {useContext} from "react";
+import {useRouter} from "next/navigation";
 
 interface HeaderProps {
     logout: () => Promise<void>;
 }
 
 export default function Header({logout}: HeaderProps) {
+    const router = useRouter();
     const isAuthenticated = useContext(AuthContext);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
@@ -47,8 +49,8 @@ export default function Header({logout}: HeaderProps) {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
+                        component={Link}
+                        href="/"
                         sx={{
                             mr: 2,
                             display: {xs: "none", md: "flex"},
@@ -92,9 +94,12 @@ export default function Header({logout}: HeaderProps) {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page.path} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page.path} onClick={() => {
+                                    router.push(page.path);
+                                    handleCloseNavMenu()
+                                }}>
                                     <Typography textAlign="center">
-                                        <Link href={page.path}>{page.title}</Link>
+                                        {page.title}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -106,8 +111,8 @@ export default function Header({logout}: HeaderProps) {
                     <Typography
                         variant="h5"
                         noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
+                        component={Link}
+                        href="/"
                         sx={{
                             mr: 2,
                             display: {xs: "flex", md: "none"},

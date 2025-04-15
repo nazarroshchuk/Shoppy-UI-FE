@@ -1,5 +1,9 @@
+import getMe from "@/api/get-me";
 
-export default function Home() {
+export default async function Home() {
+
+    const me =  await getMe()
+    console.log({me})
   return (
       <div>
 

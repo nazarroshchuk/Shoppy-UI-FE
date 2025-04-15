@@ -2,10 +2,11 @@ import type {Metadata} from "next";
 
 import "./globals.css";
 
-import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
-import {Container, CssBaseline, ThemeProvider} from "@mui/material";
-import darkTheme from "@/app/dark.theme";
-
+import {Container} from "@mui/material";
+import ClientProvidersLayout from "@/components/ClientProvidersLayout";
+import Header from "@/components/header/Header";
+import React, {ReactNode} from "react";
+import logout from "@/api/logout";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -13,21 +14,20 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
+   children,
+}: Readonly<{
+    children: ReactNode;
 }>) {
     return (
         <html lang="en">
-        <body>
-        <AppRouterCacheProvider>
-            <ThemeProvider theme={darkTheme}>
-                <CssBaseline/>
-                <Container maxWidth="md">
-                    {children}
-                </Container>
-            </ThemeProvider>
-        </AppRouterCacheProvider>
+        {/* remove after development, it caused hydration issue by Grammarly extension*/}
+        <body {...(process.env.NODE_ENV === 'development' ? { suppressHydrationWarning: true } : {})}>
+        <ClientProvidersLayout>
+            <Header logout={logout}/>
+            <Container maxWidth="md">
+                {children}
+            </Container>
+        </ClientProvidersLayout>
         </body>
         </html>
     );

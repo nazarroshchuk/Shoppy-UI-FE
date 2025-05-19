@@ -35,3 +35,26 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # Shoppy-UI-FE
+
+
+# Formatting setup
+
+Install Prettier
+https://prettier.io/docs/install
+
+After install plugins for Eslint and Prettier to combine them together
+
+````bash
+ npm install --save-dev eslint-config-prettier eslint-plugin-prettier
+````
+
+create an .eslintrc file in the root directory of your project and give it the following configuration:
+````jsunicoderegexp
+    {
+      "extends": ["prettier"],
+      "plugins": ["prettier"],
+      "rules": {
+        "prettier/prettier": ["error"]
+      },
+    }
+````

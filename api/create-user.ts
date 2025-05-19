@@ -2,18 +2,22 @@
 
 import {redirect} from "next/navigation";
 import {post} from "@/api/fetch";
-import {FormErrorInterface} from "@/common/form-error.interface";
+import {FormResponse} from "@/common/form-response.interface";
+import {isRedirectError} from "next/dist/client/components/redirect-error";
 
-export default async function createUser(_prevState: FormErrorInterface, formData: FormData){
+export default async function createUser(_prevState: FormResponse, formData: FormData) {
     try {
-        const error: FormErrorInterface  = await post('users',formData);
+        const error: FormResponse = await post('users', formData);
 
-        if(error){
-            return error ;
+        if (error?.error) {
+            return error;
         }
 
-        redirect('/')
-    } catch {
-        return {error:"Something went wrong"}
+        redirect('/auth/login');
+    } catch (error) {
+        if (isRedirectError(error)) {
+            throw error; // rethrow to let Next.js handle it
+        }
+        return {error: "Something went wrong"}
     }
 }

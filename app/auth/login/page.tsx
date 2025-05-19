@@ -5,12 +5,12 @@ import {useActionState} from "react";
 import {Box, Button, Link, Stack, TextField} from "@mui/material";
 import NextLink from "next/link";
 import loginUser from "@/api/login-user";
-import {FormErrorInterface} from "@/common/form-error.interface";
+import {FormResponse} from "@/common/form-response.interface";
 
 const loginUserWrapper = async (
-    prevState: FormErrorInterface,
+    prevState: FormResponse,
     formData: FormData
-): Promise<FormErrorInterface> => {
+): Promise<FormResponse> => {
     return await loginUser(prevState, formData);
 };
 

@@ -1,6 +1,6 @@
 'use server';
 
-import {FormErrorInterface} from "@/common/form-error.interface";
+import {FormResponse} from "@/common/form-response.interface";
 import {API_URL} from "@/constants/api";
 import {getErrorMessage} from "@/util/errors";
 import {redirect} from "next/navigation";
@@ -8,7 +8,7 @@ import {cookies} from "next/headers";
 import {jwtDecode} from "jwt-decode";
 import {AUTHENTICATION_COOKIE} from "@/constants/auth-cookie";
 
-export default async function loginUser(_prevState: FormErrorInterface, formData: FormData) {
+export default async function loginUser(_prevState: FormResponse, formData: FormData) {
     try {
         const res = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',

@@ -1,12 +1,13 @@
-import getMe from "@/api/get-me";
+import CreateProductFab from "@/app/products/create-product-fab";
+import getProducts from '@/app/products/get-products';
+import Products from '@/app/products/products';
 
 export default async function Home() {
 
-    const me =  await getMe()
-    console.log({me})
   return (
       <div>
-
+        <Products />
+        <CreateProductFab />
       </div>
   );
 }

@@ -4,18 +4,18 @@ import {Box, Button, Link, Stack, TextField} from "@mui/material";
 import NextLink from "next/link";
 import createUser from "@/api/create-user";
 import {useActionState} from "react";
-import {FormErrorInterface} from "@/common/form-error.interface";
+import {FormResponse} from "@/common/form-response.interface";
 
 const createUserWrapper = async (
-    prevState: FormErrorInterface,
+    prevState: FormResponse,
     formData: FormData
-): Promise<FormErrorInterface> => {
+): Promise<FormResponse> => {
     return await createUser(prevState, formData);
 };
 
 export default function Page() {
     const [state, formAction] = useActionState(createUserWrapper, { error: ''})
-
+console.log(state)
     return (
         <form action={formAction} className='w-full max-w-xs'>
             <Stack spacing={2}>

@@ -2,8 +2,11 @@
 
 import { Box, Button, Modal, Stack, TextField } from '@mui/material';
 import { FormResponse } from '@/common/form-response.interface';
-import { useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, CSSProperties, SyntheticEvent, useState } from 'react';
 import createProduct from '@/app/products/create-product';
+import { CloudUpload, DeleteOutline } from '@mui/icons-material';
+import Image from 'next/image';
+import Typography from '@mui/material/Typography';
 
 interface CreateProductModal {
   open: boolean;
@@ -18,11 +21,23 @@ const styles = {
   width: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
-  boxShadow: 24,
   p: 4
+};
+
+const fileInputStyles: CSSProperties = {
+  position: 'absolute',
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1
 };
 export default function CreateProductModal({ open, handleClose }: CreateProductModal) {
   const [response, setResponse] = useState<FormResponse>();
+  const [file, setFile] = useState<File | null>(null);
 
   const onClose = () => {
     setResponse(undefined);
@@ -35,6 +50,14 @@ export default function CreateProductModal({ open, handleClose }: CreateProductM
 
     if (!response.error) {
       onClose();
+    }
+  };
+
+  const onUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      setFile(file);
     }
   };
 
@@ -73,6 +96,34 @@ export default function CreateProductModal({ open, handleClose }: CreateProductM
               error={!!response?.error}
               required
             />
+            <Button
+              component="label"
+              variant="outlined"
+              startIcon={<CloudUpload />}
+            >
+              Upload File (Jpeg)
+              <input
+                type="file"
+                style={fileInputStyles}
+                name="image"
+                onChange={onUploadImage}
+              />
+            </Button>
+            {file &&
+              <Box display={'flex'} gap={4} alignItems="center">
+                <Image
+                  src={URL.createObjectURL(file)}
+                  alt="file image"
+                  width={40}
+                  height={40}
+                />
+                <Typography variant="h6">
+                  {file.name}
+                </Typography>
+                <Button onClick={() => setFile(null)}>
+                  <DeleteOutline />
+                </Button>
+              </Box>}
             <Button
               type="submit"
               variant="contained"

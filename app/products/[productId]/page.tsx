@@ -1,10 +1,12 @@
 import Typography from '@mui/material/Typography';
 import getProduct from '@/app/products/[productId]/get-product';
 import { CardActionArea, Grid, Stack } from '@mui/material';
-import { getProductImage } from '@/app/products/helpers';
+import { getProductImage } from '../helpers';
 import Image from 'next/image';
 import { routes } from '@/constants/routes';
 import { redirect } from 'next/navigation';
+import Checkout from '@/app/checkout/checkout';
+import { Product } from '@/interfaces/product';
 
 interface SingleProductProps {
   params: { productId: string };
@@ -12,8 +14,8 @@ interface SingleProductProps {
 
 export default async function SingleProduct({ params }: SingleProductProps) {
   const { productId } = await params;
-  const product = await getProduct(productId);
-  console.log({ product });
+  const product = await getProduct(productId) as Product;
+
   return (
     <Grid container marginBottom="2rem" rowGap={3}>
       {product?.imageExists &&
@@ -33,6 +35,7 @@ export default async function SingleProduct({ params }: SingleProductProps) {
           <Typography variant="h2">{product?.name}</Typography>
           <Typography>{product?.description}</Typography>
           <Typography variant="h4">${product?.price}</Typography>
+          <Checkout productId={product?.id} />
         </Stack>
       </Grid>
     </Grid>

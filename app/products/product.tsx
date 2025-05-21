@@ -3,7 +3,7 @@ import { Product as IProduct } from '@/interfaces/product';
 import { Card, CardActionArea, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import { getProductImage } from '@/app/products/helpers';
+import { getProductImage } from './helpers';
 import { redirect } from 'next/navigation';
 
 interface ProductProps {

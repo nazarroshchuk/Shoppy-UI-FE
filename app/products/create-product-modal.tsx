@@ -3,7 +3,7 @@
 import { Box, Button, Modal, Stack, TextField } from '@mui/material';
 import { FormResponse } from '@/common/form-response.interface';
 import { ChangeEvent, ChangeEventHandler, CSSProperties, SyntheticEvent, useState } from 'react';
-import createProduct from '@/app/products/create-product';
+import createProduct from '../../api/create-product';
 import { CloudUpload, DeleteOutline } from '@mui/icons-material';
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';

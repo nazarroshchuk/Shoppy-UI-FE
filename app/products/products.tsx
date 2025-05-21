@@ -1,4 +1,4 @@
-import getProducts from '@/app/products/get-products';
+import getProducts from '../../api/get-products';
 import { Grid } from '@mui/material';
 import Product from '@/app/products/product';
 

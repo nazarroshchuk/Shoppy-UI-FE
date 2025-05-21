@@ -4,4 +4,7 @@ coverage
 node_modules
 .next
 .idea
+dist
+public
+
 

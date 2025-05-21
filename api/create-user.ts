@@ -2,7 +2,7 @@
 
 import {redirect} from "next/navigation";
 import {post} from "@/api/fetch";
-import {FormResponse} from "@/common/form-response.interface";
+import {FormResponse} from "../interfaces/form-response.interface";
 import {isRedirectError} from "next/dist/client/components/redirect-error";
 
 export default async function createUser(_prevState: FormResponse, formData: FormData) {

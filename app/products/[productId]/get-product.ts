@@ -1,8 +1,8 @@
 'use server'
 
 import { get } from '@/api/fetch';
-import { Product } from '@/interfaces/product';
+import { ProductInterface } from '@/interfaces/product.interface';
 
 export default async function getProduct(productId: string) {
-  return get<Product>(`products/${productId}`)
+  return get<ProductInterface>(`products/${productId}`)
 }

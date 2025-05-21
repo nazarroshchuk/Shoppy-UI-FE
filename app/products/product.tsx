@@ -1,5 +1,5 @@
 'use client'
-import { Product as IProduct } from '@/interfaces/product';
+import { ProductInterface as IProduct } from '@/interfaces/product.interface';
 import { Card, CardActionArea, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';

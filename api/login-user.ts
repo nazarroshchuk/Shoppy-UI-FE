@@ -1,6 +1,6 @@
 'use server';
 
-import {FormResponse} from "@/common/form-response.interface";
+import {FormResponse} from "../interfaces/form-response.interface";
 import {API_URL} from "@/constants/api";
 import {getErrorMessage} from "@/util/errors";
 import {redirect} from "next/navigation";

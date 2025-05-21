@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { routes } from '@/constants/routes';
 import { redirect } from 'next/navigation';
 import Checkout from '@/app/checkout/checkout';
-import { Product } from '@/interfaces/product';
+import { ProductInterface } from '@/interfaces/product.interface';
 
 interface SingleProductProps {
   params: { productId: string };
@@ -14,7 +14,7 @@ interface SingleProductProps {
 
 export default async function SingleProduct({ params }: SingleProductProps) {
   const { productId } = await params;
-  const product = await getProduct(productId) as Product;
+  const product = await getProduct(productId) as ProductInterface;
 
   return (
     <Grid container marginBottom="2rem" rowGap={3}>

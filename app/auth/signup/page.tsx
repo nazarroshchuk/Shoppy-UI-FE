@@ -4,7 +4,7 @@ import {Box, Button, Link, Stack, TextField} from "@mui/material";
 import NextLink from "next/link";
 import createUser from "@/api/create-user";
 import {useActionState} from "react";
-import {FormResponse} from "@/common/form-response.interface";
+import {FormResponse} from "../../../interfaces/form-response.interface";
 
 const createUserWrapper = async (
     prevState: FormResponse,

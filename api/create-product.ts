@@ -12,6 +12,7 @@ export default async function createProduct(formData: FormData) {
   if(productImage instanceof File && !response?.error) {
     await uploadProductImage(response.data.id, productImage);
   }
+
   revalidateTag(PRODUCTS_TAG);
 
   return response;

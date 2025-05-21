@@ -1,9 +1,9 @@
 "use server"
 
 import { get } from '@/api/fetch';
-import { Product } from '@/interfaces/product';
+import { ProductInterface } from '@/interfaces/product.interface';
 import { PRODUCTS_TAG } from '@/constants/tags';
 
 export default async function getProducts() {
-  return get<Product[]>('products', [PRODUCTS_TAG]);
+  return get<ProductInterface[]>('products', [PRODUCTS_TAG], new URLSearchParams({ status: 'available'}));
 }

@@ -9,7 +9,7 @@ export default async function createProduct(formData: FormData) {
   const response = await post('products', formData);
 
   const productImage = formData.get('image');
-  if(productImage instanceof File && !response?.error) {
+  if (productImage instanceof File && !response?.error) {
     await uploadProductImage(response.data.id, productImage);
   }
 
@@ -18,7 +18,10 @@ export default async function createProduct(formData: FormData) {
   return response;
 }
 
-async function uploadProductImage(productId: number, file: File): Promise<void> {
+async function uploadProductImage(
+  productId: number,
+  file: File,
+): Promise<void> {
   const formData = new FormData();
   formData.append('image', file);
   const headers = await getHeaders();

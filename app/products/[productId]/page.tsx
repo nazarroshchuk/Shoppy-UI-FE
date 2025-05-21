@@ -14,11 +14,11 @@ interface SingleProductProps {
 
 export default async function SingleProduct({ params }: SingleProductProps) {
   const { productId } = await params;
-  const product = await getProduct(productId) as ProductInterface;
+  const product = (await getProduct(productId)) as ProductInterface;
 
   return (
     <Grid container marginBottom="2rem" rowGap={3}>
-      {product?.imageExists &&
+      {product?.imageExists && (
         <Grid size={{ md: 6, xs: 12 }}>
           <Image
             src={getProductImage(product?.id)}
@@ -29,7 +29,7 @@ export default async function SingleProduct({ params }: SingleProductProps) {
             sizes="100vw"
           />
         </Grid>
-      }
+      )}
       <Grid size={{ md: 6, xs: 12 }}>
         <Stack gap={3} marginBottom="2rem">
           <Typography variant="h2">{product?.name}</Typography>

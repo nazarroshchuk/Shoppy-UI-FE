@@ -1,1 +1,1 @@
-export const PRODUCTS_TAG = 'products'
+export const PRODUCTS_TAG = 'products';

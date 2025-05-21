@@ -1,10 +1,10 @@
-'use server'
+'use server';
 
-import {cookies} from "next/headers";
-import {AUTHENTICATION_COOKIE} from "@/constants/auth-cookie";
+import { cookies } from 'next/headers';
+import { AUTHENTICATION_COOKIE } from '@/constants/auth-cookie';
 
 export default async function authenticated() {
-    const serverCookies = await cookies();
+  const serverCookies = await cookies();
 
-    return !!serverCookies.get(AUTHENTICATION_COOKIE)?.value;
+  return !!serverCookies.get(AUTHENTICATION_COOKIE)?.value;
 }

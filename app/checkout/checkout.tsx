@@ -9,7 +9,6 @@ interface CheckoutProps {
 }
 
 export default function Checkout({ productId }: CheckoutProps) {
-
   const handleCheckout = async () => {
     const session = await checkout(productId);
     console.log({ session });
@@ -17,8 +16,13 @@ export default function Checkout({ productId }: CheckoutProps) {
     await stripe?.redirectToCheckout({ sessionId: session.data.id });
   };
 
-
   return (
-    <Button variant="contained" className="max-w-[25%]" onClick={handleCheckout}>Buy now</Button>
+    <Button
+      variant="contained"
+      className="max-w-[25%]"
+      onClick={handleCheckout}
+    >
+      Buy now
+    </Button>
   );
-};
+}

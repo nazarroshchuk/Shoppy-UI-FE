@@ -1,15 +1,15 @@
 export const getErrorMessage = (response: any | Error) => {
-    if(response.message) {
-        if(Array.isArray(response.message)){
-            return formatErrorMessage(response.message[0]);
-        }
-
-        return formatErrorMessage(response.message);
+  if (response.message) {
+    if (Array.isArray(response.message)) {
+      return formatErrorMessage(response.message[0]);
     }
 
-    return "Unknown error occurred."
-}
+    return formatErrorMessage(response.message);
+  }
+
+  return 'Unknown error occurred.';
+};
 
 const formatErrorMessage = (message: string) => {
-    return message.charAt(0).toUpperCase() + message.slice(1);
-}
+  return message.charAt(0).toUpperCase() + message.slice(1);
+};

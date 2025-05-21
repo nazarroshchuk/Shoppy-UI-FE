@@ -2,7 +2,13 @@
 
 import { Box, Button, Modal, Stack, TextField } from '@mui/material';
 import { FormResponse } from '../../interfaces/form-response.interface';
-import { ChangeEvent, ChangeEventHandler, CSSProperties, SyntheticEvent, useState } from 'react';
+import {
+  ChangeEvent,
+  ChangeEventHandler,
+  CSSProperties,
+  SyntheticEvent,
+  useState,
+} from 'react';
 import createProduct from '../../api/create-product';
 import { CloudUpload, DeleteOutline } from '@mui/icons-material';
 import Image from 'next/image';
@@ -21,7 +27,7 @@ const styles = {
   width: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
-  p: 4
+  p: 4,
 };
 
 const fileInputStyles: CSSProperties = {
@@ -33,9 +39,12 @@ const fileInputStyles: CSSProperties = {
   bottom: 0,
   left: 0,
   whiteSpace: 'nowrap',
-  width: 1
+  width: 1,
 };
-export default function CreateProductModal({ open, handleClose }: CreateProductModal) {
+export default function CreateProductModal({
+  open,
+  handleClose,
+}: CreateProductModal) {
   const [response, setResponse] = useState<FormResponse>();
   const [file, setFile] = useState<File | null>(null);
 
@@ -64,10 +73,7 @@ export default function CreateProductModal({ open, handleClose }: CreateProductM
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={styles}>
-        <form
-          className="w-full max-w-xs"
-          action={onSubmitHandler}
-        >
+        <form className="w-full max-w-xs" action={onSubmitHandler}>
           <Stack spacing={2}>
             <TextField
               label="Name"
@@ -109,7 +115,7 @@ export default function CreateProductModal({ open, handleClose }: CreateProductM
                 onChange={onUploadImage}
               />
             </Button>
-            {file &&
+            {file && (
               <Box display={'flex'} gap={4} alignItems="center">
                 <Image
                   src={URL.createObjectURL(file)}
@@ -117,18 +123,13 @@ export default function CreateProductModal({ open, handleClose }: CreateProductM
                   width={40}
                   height={40}
                 />
-                <Typography variant="h6">
-                  {file.name}
-                </Typography>
+                <Typography variant="h6">{file.name}</Typography>
                 <Button onClick={() => setFile(null)}>
                   <DeleteOutline />
                 </Button>
-              </Box>}
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-            >
+              </Box>
+            )}
+            <Button type="submit" variant="contained" color="primary">
               Create product
             </Button>
           </Stack>

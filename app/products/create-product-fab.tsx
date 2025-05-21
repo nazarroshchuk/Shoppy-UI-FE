@@ -9,7 +9,10 @@ export default function CreateProductFab() {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
-      <CreateProductModal open={modalVisible} handleClose={() => setModalVisible(false)} />
+      <CreateProductModal
+        open={modalVisible}
+        handleClose={() => setModalVisible(false)}
+      />
       <div className="absolute left-10 bottom-10">
         <Fab color="primary" onClick={() => setModalVisible(true)}>
           <AddIcon />

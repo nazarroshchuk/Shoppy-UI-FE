@@ -1,10 +1,8 @@
 import Typography from '@mui/material/Typography';
 import getProduct from '@/app/products/[productId]/get-product';
-import { CardActionArea, Grid, Stack } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 import { getProductImage } from '../helpers';
 import Image from 'next/image';
-import { routes } from '@/constants/routes';
-import { redirect } from 'next/navigation';
 import Checkout from '@/app/checkout/checkout';
 import { ProductInterface } from '@/interfaces/product.interface';
 

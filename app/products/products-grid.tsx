@@ -3,7 +3,7 @@
 import { ProductInterface as IProduct } from '@/interfaces/product.interface';
 import { Grid } from '@mui/material';
 import Product from '@/app/products/product';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import { useEffect } from 'react';
 import { API_URL } from '@/constants/api';
 import revalidateProducts from '@/api/revalidate-products';
@@ -20,8 +20,8 @@ export default function ProductsGrid({ products }: ProductsGridProps) {
     const createSocket = async () => {
       const socket = io(API_URL!, {
         auth: {
-          Authentication: await getAuthentication()
-        }
+          Authentication: await getAuthentication(),
+        },
       });
       console.log('connected');
 

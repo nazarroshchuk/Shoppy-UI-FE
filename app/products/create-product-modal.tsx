@@ -1,14 +1,8 @@
 'use client';
 
 import { Box, Button, Modal, Stack, TextField } from '@mui/material';
-import { FormResponse } from '../../interfaces/form-response.interface';
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  CSSProperties,
-  SyntheticEvent,
-  useState,
-} from 'react';
+import { FormResponse } from '@/interfaces/form-response.interface';
+import { ChangeEvent, CSSProperties, useState } from 'react';
 import createProduct from '../../api/create-product';
 import { CloudUpload, DeleteOutline } from '@mui/icons-material';
 import Image from 'next/image';
